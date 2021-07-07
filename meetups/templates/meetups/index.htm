@@ -1,0 +1,34 @@
+<!-- Base links to the template -->
+{% extends 'meetups/base/base.htm' %}
+<!-- To enable django templating -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% block title %}All meetups{% endblock %}
+
+{% block site_css %}
+    <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+{% endblock %}
+
+{% block main_heading %}
+We do meet ups better.
+{% endblock %}
+
+{% block header_content %}
+<p>Find the one that best suits your company needs</p>
+{% endblock %}
+
+{% block body %}
+        <section>
+            <h2>Upcoming Meetups</h2>
+            <ol>
+               {% for meets in meetups %}
+               <!-- to include file snippets these are basically props requested in the include -->
+                   {% include 'meetups/includes/meets.htm' with title=meets.title location="San Salvador" slug=meet.slug image=meets.image.url %}
+               {% endfor %}
+            </ol>
+        </section>
+        {% endblock %}
+
+    
